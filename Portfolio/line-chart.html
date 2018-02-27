@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Flotr2: Line Chart</title>
+    <link href="css/master.css" rel="stylesheet" />
+  </head>
+
+  <body>
+
+    <!-- "[F]or more significant amounts of data, a line chart can present the information much more effectively. Line charts are especially good at revealing overall trends in data without bogging the user down in individual data points." - Data Visualization with JavaScript, p. 15 -->
+
+    <div id="chart"></div>
+
+    <script src="js/flotr2.min.js"></script>
+    <script>
+
+      // statistics are cumulative!
+
+      var ints = [
+        // [0, 0]
+
+        [2010, 534],
+        [2015, 397],
+
+      ];
+
+      var fumbles = [
+        // [0, 0]
+        [2010, 1576],
+        [2015, 2190],
+
+
+      ];
+
+
+        window.onload = function(){
+            Flotr.draw(
+            document.getElementById("chart"),
+                [
+                {
+                    data: ints,
+                    lines: {show: true},
+                    shadowSize: 0,
+                    color: "#ff0000",
+                },
+                {
+                    data: fumbles,
+                    lines: {show: true},
+                     shadowSize: 0,
+                    color: "#0000ff",
+                },
+
+
+                ],
+                {
+                  title: "Occupied Housing Units in Wynwood between Track 26 & Track 28",
+                  HtlmlText: false,
+                    yaxis: {
+                     min: 0,
+                     max: 2500,
+                     tickDecimals: 0,
+                     title: "Total"
+                 },
+                    xaxis:{
+                        noTicks: fumbles.length,
+                        tickDecimals:0,
+                    },
+                   //
+                }
+            )
+        }
+    </script>
+
+  </body>
+</html>

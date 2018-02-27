@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Flotr2: Radar Chart</title>
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+
+    <!-- If you have data with many dimensions, a radar chart may be
+    the most effective way to visualize it ... unfamilarity makes them
+    harder for users to interpert ... be careful not to increase the
+    burden. - Data Visualization with JavaScript, p. 41 -->
+
+    <div id="chart"></div>
+
+    <script src="js/flotr2.min.js"></script>
+    <script>
+
+    var players = [
+      {
+        player: "Track Twenty Six",
+        Population over twenty five: 2769,
+        Occupied Housing Units: 1576,
+        Total Population: 5647,
+        Puerto Rican Population: 746,
+        Houing Units: 2626
+      },
+      {
+        player: "Track Twenty Eight",
+        Population over twenty five: 1878,
+        Occupied Housing Units: 534,
+        Total Population: 1630,
+        Puerto Rican Population: 146,
+        Houing Units: 642
+      },
+    ]
+    // We accumulate a sum of player data so we have something to
+    // compare each player to.
+    var team = {
+      Population over twenty five: 4047,
+      Occupied Housing Units: 2110,
+      Total Population: 7277,
+      Puerto Rican Population: 892,
+      Houing Units: 3,268
+    }
+    // Our labels define each point on the radar. This is similar to
+    // how we map the index of a bar chart to a label.
+    var labels = [
+      [0, "Population over 25"],
+      [1, "Occupied Housing Units"],
+      [2, "Total Population"],
+      [3, "Puerto Rican Population"],
+      [4, "Housing Units"]
+    ];
+    // The getPlayer function iterates through each player in our
+    // players array. If the player name in the array object matches
+    // what is passed into the function, it returns that player's
+    // data.
+    var getPlayer = function(name) {
+      for (i = 0; i < players.length; i++) {
+        if (players[i].player === name) return players[i];
+      }
+    }
+    // The playerData function uses the team object as a foundation
+    // for the keys we want to collect from each player.
+    var playerData = function(name) {
+      var obj = {};
+      var i = 0;
+
+      obj.label = name;
+      obj.data = [];
+
+      for (var key in team) {
+        obj.data.push([i, 100*getPlayer(name)[key]/team[key]]);
+        i++;
+      }
+
+      return obj;
+    }
+
+
+    window.onload = function() {
+      Flotr.draw(
+        document.getElementById("chart"),
+        [
+          playerData("Track Twenty Six"),
+          playerData("Track Twenty Eight"),
+        ],
+        {
+          title: "2010 Wynwood Population",
+          radar: { show: true },
+          grid: { circular: true },
+          xaxis: { ticks: labels },
+          yaxis: {
+            showLabels: false,
+            min: 0,
+            max: 8000
+          }
+        }
+      );
+    }
+    // There's one problem with radar charts: to overlay too many
+    // measurements may confuse the reader even though they offer
+    // comparisons.
+    // A few options might be:
+    // - Limit the number data sets you present at any one time.
+    //   Instead of showing the entire starting lineup, display
+    //   Miami's 'Big Three' (Bosh, James and Wade).
+    // - Build a chart for each player and display them next to
+    //   each other. If the differences are drastic enough, a
+    //   user will be able to see them.
+    // - Add interactivity. (I know, I know - - we're getting there!)
+    //   Give a user the option of displaying as many data sets as
+    //   they can handle.
+    </script>
+  </body>
+</html>
