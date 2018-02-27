@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Flotr2: Bar Chart 02</title>
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <body>
+
+       <!-- "[Pie charts are] rarely the most effective way to communicate data. ... They're not very good at letting users compare multiple values, but ... they do provide a nice and easily understandable picture showing the proportion of a single value within a whole." - Data Visualization with JavaScript, p. 25 -->
+
+       <div id="chart"></div>
+
+       <script src="js/flotr2.min.js"></script>
+       <script>
+         var scoring = [
+           {data: [[0,3408]], label: "Too little", color: "#800000"},
+           {data: [[1,767]], label: "About right", color: "#808000	"},
+         ];
+         window.onload = function() {
+           Flotr.draw(
+             document.getElementById("chart"),
+             scoring,
+             {
+               title: "What do Americans think about Mass Transportation costs? 2016",
+               HtmlText: false,
+               pie: {
+                 show: true,
+                 shadowSize: 0,
+                 explode: 10,
+                 fillOpacity: 1,
+                 labelFormatter: function(pie, slice) {
+                   return slice + " points (" + (slice/pie * 100).toPrecision(4) + "%)";
+                 }
+                 // pie is the total of all slices
+               },
+               yaxis: {
+                 showLabels: false
+               },
+               xaxis: {
+                 showLabels: false
+               },
+               grid: {
+                 horizontalLines: false,
+                 verticalLines: false
+               }
+             }
+           )
+         }
+       </script>
+
+     </body>
+   </html>
