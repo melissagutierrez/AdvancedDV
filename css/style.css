@@ -1,0 +1,8 @@
+body {
+  font-family: didot;
+}
+
+#chart {
+  width: 600px;
+  height: 400px;
+}
