@@ -38,15 +38,14 @@
     ]
     // We accumulate a sum of player data so we have something to
     // compare each player to.
-    var team = [
-      {
+    var team = {
       Population: 4047,
       OccupiedHousingUnits: 2110,
       TotalPopulation: 7277,
       PuertoRicanPopulation: 892,
-      HouingUnits: 3,268
+      HouingUnits: 3268
+}
 
-  
     // Our labels define each point on the radar. This is similar to
     // how we map the index of a bar chart to a label.
     var labels = [
@@ -98,7 +97,7 @@
           yaxis: {
             showLabels: false,
             min: 0,
-            max: 8000
+            max: 100
           }
         }
       );
