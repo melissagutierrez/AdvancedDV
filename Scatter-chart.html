@@ -13,10 +13,10 @@
     <script src="js/flotr2.min.js"></script>
     <script src="js/underscore.min.js"></script>
     <script>
-      var house2600  = [[1504, 2000]];
-      var house2610    = [[2626, 2010]];
-      var house2800 = [[1140, 2000]];
-      var house2810    = [[1484, 2010]];
+      var stanton  = [[12.3, 26171]];
+      var judge    = [[37.6, 36987]];
+      var martinez = [[2.8, 16719]];
+      var davis    = [[17.3, 16586]];
       // So we don't have to process the data let's just hard-code it.
       // The data we processed before did not add colors to
       // differentiate one player from another. And since we're still
@@ -32,45 +32,45 @@
           document.getElementById("chart"),
           [
             {
-              data: house2600,
-              label: "G. Stanton",
+              data: stanton,
+              label: "Tract A 2010",
               points: {show: true},
-              color: "#FF6600",
+              color: "#FF5733",
             },
             {
-              data: house2610,
-              label: "A. Judge",
+              data: judge,
+              label: "Tract A 2015",
               points: {show: true},
-              color: "#003087"
+              color: "#B52507"
             },
             {
-              data: house2800,
-              label: "J. Martinez",
+              data: martinez,
+              label: "Tract B 2010",
               points: {show: true},
-              color: "#000000"
+              color: "#3FB9FA"
             },
             {
-              data: house2810,
-              label: "K. Davis",
+              data: davis,
+              label: "Tract B 2015",
               points: {show: true},
-              color: "#003831"
+              color: "#1679AD"
             },
           ],
           {
             HtmlText: false,
-            title: "Top 5 Power Hitters, 2017",
-            subtitle: "(Strikeouts vs. Home Runs)",
+            title: "Class Differences in Wynwood over Time",
+            subtitle: "(Education vs. Income)",
             xaxis: {
-              min: 35,
-              max: 65,
+              min: 0,
+              max: 40,
               tickDecimals: 0,
-              title: "Home Runs"
+              title: "Percent BA or More"
             },
             yaxis: {
-              min: 120,
-              max: 235,
+              min: 15000,
+              max: 40000,
               tickDecimals: 0,
-              title: "Strikeouts"
+              title: "Median Incomes"
             }
           }
         )
