@@ -1,7 +1,7 @@
 body {
-  font-family: didot;
+font-family: Helvetica;
+background-color: lightyellow;
 }
-
 #chart {
   width: 600px;
   height: 400px;
