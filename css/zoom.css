@@ -3,7 +3,8 @@ html {
 }
 
 body {
-  font-family: sans-serif;
+  font-family: Helvetica;
+  background-color: lightyellow;
 }
 
 #chart {
