@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Underscore.js: Generating Arrays</title>
+  </head>
+
+  <body>
+
+    <p>Generating Arrays</p>
+
+    <script src="js/underscore-min.js"></script>
+    <script>
+
+      // NOTE: Code example in book is incorrect. See:
+      // http://underscorejs.org/#range
+
+      console.log(_.range(10));
+
+      // the default starting value for range() is 0
+      // the default increment value is 1
+
+      console.log(_.range(20, 30));
+
+      // the first argument specifies a new starting value
+      // the second argument specifies where to stop
+
+      console.log(_.range(0, 1000, 100));
+
+      // with three arguments, the first specifies the starting value;
+      // tge second is where to stop; the third is the step
+
+
+      var y = [0.1277, 1.2803, 1.7697, 3.1882];
+
+      // Sweeeeeet practical use case: .range can be valuable in
+      // generating x-axis values to combine with y-axis values:
+      // _.zip(_.range(y.length), y);
+
+    </script>
+  </body>
+</html>

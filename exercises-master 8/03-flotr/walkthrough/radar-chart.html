@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Flotr2: Radar Chart</title>
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+
+    <!-- If you have data with many dimensions, a radar chart may be
+    the most effective way to visualize it ... unfamilarity makes them
+    harder for users to interpert ... be careful not to increase the
+    burden. - Data Visualization with JavaScript, p. 41 -->
+
+    <div id="chart"></div>
+
+    <script src="js/flotr2.min.js"></script>
+    <script>
+
+    var players = [
+      {
+        player: "Chris Bosh",
+        points: 17.2,
+        rebounds: 7.9,
+        assists: 1.6,
+        steals: 0.8,
+        blocks: 0.8
+      },
+      {
+        player: "Shane Battier",
+        points: 5.4,
+        rebounds: 2.6,
+        assists: 1.2,
+        steals: 1.0,
+        blocks: 0.5
+      },
+      {
+        player: "LeBron James",
+        points: 28.0,
+        rebounds: 8.4,
+        assists: 6.1,
+        steals: 1.9,
+        blocks: 0.8
+      },
+      {
+        player: "Dwyane Wade",
+        points: 22.3,
+        rebounds: 5.0,
+        assists: 4.5,
+        steals: 1.7,
+        blocks: 1.3
+      },
+      {
+        player: "Mario Chalmers",
+        points: 10.2,
+        rebounds: 2.9,
+        assists: 3.6,
+        steals: 1.4,
+        blocks: 0.2
+      }
+    ]
+
+
+    // We accumulate a sum of player data so we have something to
+    // compare each player to.
+
+    var team = {
+      points: 98.2,
+      rebounds: 41.3,
+      assists: 19.3,
+      steals: 8.5,
+      blocks: 5.3
+    }
+
+
+    // Our labels define each point on the radar. This is similar to
+    // how we map the index of a bar chart to a label.
+
+    var labels = [
+      [0, "Points"],
+      [1, "Rebounds"],
+      [2, "Assists"],
+      [3, "Steals"],
+      [4, "Blocks"]
+    ];
+
+
+    // The getPlayer function iterates through each player in our
+    // players array. If the player name in the array object matches
+    // what is passed into the function, it returns that player's
+    // data.
+
+    var getPlayer = function(name) {
+      for (i = 0; i < players.length; i++) {
+        if (players[i].player === name) return players[i];
+      }
+    }
+
+
+    // The playerData function uses the team object as a foundation
+    // for the keys we want to collect from each player.
+
+    var playerData = function(name) {
+      var obj = {};
+      var i = 0;
+
+      obj.label = name;
+      obj.data = [];
+
+      for (var key in team) {
+        obj.data.push([i, 100*getPlayer(name)[key]/team[key]]);
+        i++;
+      }
+
+      return obj;
+    }
+
+
+    window.onload = function() {
+      Flotr.draw(
+        document.getElementById("chart"),
+        [
+          playerData("Chris Bosh"),
+          playerData("Shane Battier"),
+          playerData("LeBron James"),
+          playerData("Dwyane Wade"),
+          playerData("Mario Chalmers")
+        ],
+        {
+          title: "2011-12 Miami Heat - Contributions to Team Total",
+          radar: { show: true },
+          grid: { circular: true },
+          xaxis: { ticks: labels },
+          yaxis: {
+            showLabels: false,
+            min: 0,
+            max: 33
+          }
+        }
+      );
+    }
+
+    // There's one problem with radar charts: to overlay too many
+    // measurements may confuse the reader even though they offer
+    // comparisons.
+
+    // A few options might be:
+
+    // - Limit the number data sets you present at any one time.
+    //   Instead of showing the entire starting lineup, display
+    //   Miami's 'Big Three' (Bosh, James and Wade).
+
+    // - Build a chart for each player and display them next to
+    //   each other. If the differences are drastic enough, a
+    //   user will be able to see them.
+
+    // - Add interactivity. (I know, I know - - we're getting there!)
+    //   Give a user the option of displaying as many data sets as
+    //   they can handle.
+
+    </script>
+  </body>
+</html>

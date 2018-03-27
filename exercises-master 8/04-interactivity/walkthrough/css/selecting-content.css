@@ -1,0 +1,41 @@
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+#wrapper > h1 {
+  width: 600px;  /* keeps text within chart confines */
+  font-size: 1rem;
+  text-align: center;
+}
+
+#chart {
+  width: 600px;
+  height: 400px;
+  float: left;
+}
+
+#controls {
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  float: left;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+label > input {
+  vertical-align: text-bottom;
+}
+
+label > span {
+  display: inline-block;
+  height: 0.7rem;
+  width: 0.7rem;
+  margin: 0 0.25rem;
+}

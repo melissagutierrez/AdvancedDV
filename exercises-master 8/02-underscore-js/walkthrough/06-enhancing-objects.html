@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Underscore.js: Enhancing Objects</title>
+  </head>
+
+  <body>
+
+    <p>Enhancing Objects</p>
+
+    <script src="js/underscore-min.js"></script>
+    <script>
+
+      var pizza = {
+        size: 10,
+        crust: "thin",
+        cheese: true,
+        toppings: ["pepperoni", "sausage"]
+      }
+
+      // _(pizza).keys();
+      // .keys() creates an array of object keys
+
+      // _(pizza).values();
+      // .values() creates an array of object values
+
+      // _(pizza).pairs();
+      // .pairs() turns the object into a two-dimensional array
+
+      // _(pizza).invert();
+      // .invert() swaps the roles of keys, values
+
+
+      var array = [
+        ["size", 10],
+        ["crust", "thin"],
+        ["cheese", true],
+        ["toppings", ["pepperoni", "sausage"]]
+      ]
+
+      // _(array).object()
+      // .object() turns a two-dimensional array into an object
+
+    </script>
+  </body>
+</html>

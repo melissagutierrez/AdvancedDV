@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Underscore.js: Testing a Collection</title>
+  </head>
+
+  <body>
+
+    <p>Testing a Collection</p>
+
+    <script src="js/underscore-min.js"></script>
+    <script>
+
+      var national_league = [
+        {
+          name: "Arizona Diamondbacks",
+          wins: 81,
+          losses: 81,
+          division: "west"
+        },
+        {
+          name: "Atlanta Braves",
+          wins: 94,
+          losses: 68,
+          division: "east"
+        },
+        {
+          name: "Chicago Cubs",
+          wins: 61,
+          losses: 101,
+          division: "central"
+        },
+        {
+          name: "Cincinnati Reds",
+          wins: 97,
+          losses: 65,
+          division: "central"
+        },
+        {
+          name: "Colorado Rockies",
+          wins: 64,
+          losses: 98,
+          division: "west"
+        },
+        {
+          name: "Houston Astros",
+          wins: 55,
+          losses: 107,
+          division: "central"
+        },
+        {
+          name: "Los Angeles Dodgers",
+          wins: 86,
+          losses: 76,
+          division: "west"
+        },
+        {
+          name: "Miami Marlins",
+          wins: 69,
+          losses: 93,
+          division: "east"
+        },
+        {
+          name: "Milwaukee Brewers",
+          wins: 83,
+          losses: 79,
+          division: "central"
+        },
+        {
+          name: "New York Mets",
+          wins: 74,
+          losses: 88,
+          division: "east"
+        },
+        {
+          name: "Philadelphia Phillies",
+          wins: 81,
+          losses: 81,
+          division: "east"
+        },
+        {
+          name: "Pittsburgh Pirates",
+          wins: 79,
+          losses: 83,
+          division: "central"
+        },
+        {
+          name: "San Diego Padres",
+          wins: 76,
+          losses: 86,
+          division: "west"
+        },
+        {
+          name: "San Francisco Giants",
+          wins: 94,
+          losses: 68,
+          division: "west"
+        },
+        {
+          name: "St. Louis Cardinals",
+          wins: 88,
+          losses: 74,
+          division: "central"
+        },
+        {
+          name: "Washington Nationals",
+          wins: 98,
+          losses: 64,
+          division: "east"
+        }
+      ];
+
+
+      var all_70_wins = _(national_league).every(
+        function(team) {
+          return team.wins >= 70;
+        }
+      );
+
+      // .every() checks to see if _every_ element in a collection
+      // passes a test; it will return a boolean value
+
+
+      var any_70_wins = _(national_league).any(
+        function(team) {
+          return team.wins >= 70;
+        }
+      );
+
+      // .any() checks to see if _any_ element in a collection passes
+      // a test; it will return a boolean value
+
+
+      var most_wins = _(national_league).max(
+        function(team) {
+          return team.wins;
+        }
+      );
+
+      // .max() returns the highest value in the collection
+
+
+      var fewest_wins = _(national_league).min(
+        function(team) {
+          return team.wins;
+        }
+      );
+
+      // .min() returns the lowest value in the collection
+
+    </script>
+  </body>
+</html>

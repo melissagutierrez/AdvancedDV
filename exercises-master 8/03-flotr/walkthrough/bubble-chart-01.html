@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Flotr2: Bubble Chart 01</title>
+    <link href="css/style.css" rel="stylesheet" />
+    <style>
+      #chart {
+        width: 365px;
+        height: 440px;
+      }
+
+      /*
+        We have set our chart size in the style.css file, but we need
+        to override this since our chart size is based on the
+        dimensions of our background image.
+      */
+
+    </style>
+  </head>
+
+  <body>
+
+    <!-- If we need to visualize three variables, we could use a
+    scatter plot framework, for two variables, then vary the size of
+    the points according to the third variable. The resulting chart
+    is a bubble chart. - Data Visualization with JavaScript, p. 34 -->
+
+    <div id="chart"></div>
+
+    <script src="js/flotr2.min.js"></script>
+    <script src="js/underscore.min.js"></script>
+    <script>
+
+      var irma = [
+        { north: 23.5, west: 81.0, wind: 120 },
+        { north: 23.7, west: 81.3, wind: 130 },
+        { north: 24.1, west: 81.5, wind: 130 },
+        { north: 24.5, west: 81.5, wind: 130 },
+        { north: 25.0, west: 81.5, wind: 130 },
+        { north: 25.6, west: 81.8, wind: 120 },
+        { north: 26.2, west: 81.8, wind: 110 },
+        { north: 26.7, west: 81.7, wind: 105 },
+        { north: 27.5, west: 81.9, wind: 100 },
+        { north: 28.2, west: 82.2, wind: 85 },
+        { north: 28.9, west: 82.6, wind: 75 },
+        { north: 29.5, west: 82.9, wind: 70 },
+        { north: 30.5, west: 83.1, wind: 65 },
+        { north: 30.8, west: 83.6, wind: 60 },
+        { north: 31.5, west: 84.0, wind: 50 },
+        { north: 31.9, west: 84.4, wind: 45 },
+        { north: 32.4, west: 84.9, wind: 35 }
+      ];
+
+
+      // For now, let's keep our getPoints function simple. We only
+      // want it to collect a data set related to location and wind
+      // speed. To add color, we'll need to modify our function in
+      // a separate iteration.
+
+      function getPoints(source) {
+        var result = [];
+
+        _(source).each(
+          function(data) {
+            result.push([(data.west * -1), data.north, data.wind]);
+          }
+        );
+
+        // Remember, we need to plot x, than y. This is contrary to
+        // how we plot latitude (y) and longitude. Because we are in
+        // the western hemisphere, remember to multiply west by -1!
+
+        return result;
+
+        // When we're done, have the function return the result.
+      }
+
+
+      window.onload = function() {
+        Flotr.draw(
+          document.getElementById("chart"),
+          [{
+            data: getPoints(irma),
+            bubbles: {show: true, baseRadius: 0.075},
+            color: "#00905A"
+
+            // Start small with bubble radius. If there isn't much
+            // room (as in this case), bubbles will overlap and
+            // confuse the user!
+
+          }],
+          {
+            xaxis: {
+              min: -86.0,  // working in negative numbers, so 'higher' is min
+              max: -78.0   // and 'lower' is max.
+            },
+            yaxis: {
+              min: 23.5,
+              max: 32.0
+            },
+            grid: {
+              backgroundImage: "img/florida.png",
+              horizontalLines: false,
+              verticalLines: false
+            }
+
+            // Notes about our X and Y axis and our background image:
+            // in order for this to work properly, what you set as the
+            // bounding box in OpenStreetMap needs to match the min and
+            // max in your xaxis and yaxis properties! Otherwise, the
+            // plot will be off.
+
+          }
+        );
+      }
+    </script>
+  </body>
+</html>

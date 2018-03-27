@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Flotr2: Bubble Chart 02</title>
+    <link href="css/style.css" rel="stylesheet" />
+    <style>
+      #chart {
+        width: 365px;
+        height: 440px;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div id="chart"></div>
+
+    <script src="js/flotr2.min.js"></script>
+    <script src="js/underscore.min.js"></script>
+    <script>
+
+      var irma = [
+        { north: 23.5, west: 81.0, wind: 120 },
+        { north: 23.7, west: 81.3, wind: 130 },
+        { north: 24.1, west: 81.5, wind: 130 },
+        { north: 24.5, west: 81.5, wind: 130 },
+        { north: 25.0, west: 81.5, wind: 130 },
+        { north: 25.6, west: 81.8, wind: 120 },
+        { north: 26.2, west: 81.8, wind: 110 },
+        { north: 26.7, west: 81.7, wind: 105 },
+        { north: 27.5, west: 81.9, wind: 100 },
+        { north: 28.2, west: 82.2, wind: 85 },
+        { north: 28.9, west: 82.6, wind: 75 },
+        { north: 29.5, west: 82.9, wind: 70 },
+        { north: 30.5, west: 83.1, wind: 65 },
+        { north: 30.8, west: 83.6, wind: 60 },
+        { north: 31.5, west: 84.0, wind: 50 },
+        { north: 31.9, west: 84.4, wind: 45 },
+        { north: 32.4, west: 84.9, wind: 35 }
+      ];
+
+      // This example is different from the book. We need to account
+      // for wind speed and apply color. This is handled within
+      // the Flotr data.
+
+      // The book suggests applying a filter to each data object. But
+      // if we add the filter to the function, it requires us to test
+      // what is data and what is a function? But the book isn't quite
+      // clear on the details of this test.
+
+      // I tend to code with the mindset that any function I build
+      // should do *one* thing well. In the case of getPoints, I want
+      // to take a data set and create an array of arrays.
+
+      // My current, first-run, ugly solution is to use underscore.js
+      // filters to parse separate data sets for respective wind speed.
+      // I create a variable for each level of the Safdir-Simpson
+      // scale, then pass an underscore.js filter into my getPoints
+      // filter to separate each set of wind speeds. I use the result
+      // stored in those variables as my data set.
+      // (i.e. {data: tstorm })
+
+      // This is just one way to do it, and I'm positive there is
+      // probably a cleaner way. But it keeps my data, two steps of
+      // processing (create array, filter data) and chart drawing
+      // independent of one another.
+
+
+      function getPoints(source) {
+        var result = [];
+
+        _(source).each(
+          function(data) {
+            result.push([(data.west * -1), data.north, data.wind]);
+          }
+        );
+
+        return result;
+      }
+
+
+      // Saffir-Simpson Scale filters
+
+      var tstorm = getPoints(_(irma).filter(
+        function(data) {
+          return (data.wind >= 39) && (data.wind <= 73);
+        })
+      );
+
+      var cat1 = getPoints(_(irma).filter(
+        function(data) {
+          return (data.wind >= 74) && (data.wind <= 95);
+        })
+      );
+
+      var cat2 = getPoints(_(irma).filter(
+        function(data) {
+          return (data.wind >= 96) && (data.wind <= 110);
+        })
+      );
+
+      var cat3 = getPoints(_(irma).filter(
+        function(data) {
+          return (data.wind >= 111) && (data.wind <= 129);
+        })
+      );
+
+      var cat4 = getPoints(_(irma).filter(
+        function(data) {
+          return (data.wind >= 130) && (data.wind <= 156);
+        })
+      );
+
+      var cat5 = getPoints(_(irma).filter(
+        function(data) {
+          return (data.wind >= 157);
+        })
+      );
+
+
+      window.onload = function() {
+        Flotr.draw(
+          document.getElementById("chart"),
+          [{
+            data: tstorm,
+            label: "Tropical Storm",
+            color: "#60BB00",
+            bubbles: {show: true, baseRadius: 0.075}
+          },
+          {
+            data: cat1,
+            label: "Cat 1",
+            color: "#EDE600",
+            bubbles: {show: true, baseRadius: 0.075}
+          },
+          {
+            data: cat2,
+            label: "Cat 2",
+            color: "#ECAD00",
+            bubbles: {show: true, baseRadius: 0.075}
+          },
+          {
+            data: cat3,
+            label: "Cat 3",
+            color: "#FF5700",
+            bubbles: {show: true, baseRadius: 0.075}
+          },
+          {
+            data: cat4,
+            label: "Cat 4",
+            color: "#E60000",
+            bubbles: {show: true, baseRadius: 0.075}
+          },
+          {
+            data: cat5,
+            label: "Cat 5",
+            color: "#860000",
+            bubbles: {show: true, baseRadius: 0.075}
+          },
+        ],
+          {
+            title: "Hurricane Irma, Sept. 9-11, 2017",
+            xaxis: {
+              min: -86.0,
+              max: -78.0,
+              tickDecimals: false,
+              tickFormatter: function(val) { return val + "°W"}
+            },
+            yaxis: {
+              min: 23.5,
+              max: 32.0,
+              tickDecimals: false,
+              tickFormatter: function(val) { return val + "°N"}
+            },
+            grid: {
+              backgroundImage: "img/florida.png",
+              horizontalLines: false,
+              verticalLines: false
+            },
+            legend: {
+              position: "sw"
+            }
+          }
+        )
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fibonacci: Imperative Programming</title>
+  </head>
+
+  <body>
+
+    <script>
+      var fib = function(n) {
+        // If 0th or 1st, return n itself
+        if (n < 2) return n;
+
+        // Otherwise, initialize variable to compute result
+        var f0 = 0, f1 = 1, f = 1;
+
+        // Iterate until we reach n
+        for (var i = 2; i < n; i++) {
+
+          // At each iteration, slide the intermediate values down a step
+          f0 = f1;
+          f1 = f;
+
+          // And calculate the sum for the next pass
+          f = f0 + f1;
+
+        }
+
+        // After all iterations, return the result
+
+        return f;
+      }
+
+      console.log(fib(10));
+      
+    </script>
+  </body>
+</html>

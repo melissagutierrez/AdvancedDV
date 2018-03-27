@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Flotr2: Scatter Chart 02</title>
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+
+    <div id="chart"></div>
+
+    <script src="js/flotr2.min.js"></script>
+    <script src="js/underscore.min.js"></script>
+    <script>
+
+      var stanton  = [[59, 163]];
+      var judge    = [[52, 208]];
+      var martinez = [[45, 128]];
+      var davis    = [[43, 195]];
+      var gallo    = [[41, 196]];
+
+
+      // So we don't have to process the data let's just hard-code it.
+
+      // The data we processed before did not add colors to
+      // differentiate one player from another. And since we're still
+      // doing static charts, there's no mouseover-tool tip to give us
+      // indication as to which dot is for which player. So color is
+      // our best option at the moment.
+
+      // We can see flaw in this chart format (and library) in that too
+      // many players could lead to overlap, an unweildy key and too
+      // many colors (and what happens if we show two players from one
+      // team?). 
+
+
+      window.onload = function() {
+        Flotr.draw(
+          document.getElementById("chart"),
+          [
+            {
+              data: stanton,
+              label: "G. Stanton",
+              points: {show: true},
+              color: "#FF6600",
+            },
+            {
+              data: judge,
+              label: "A. Judge",
+              points: {show: true},
+              color: "#003087"
+            },
+            {
+              data: martinez,
+              label: "J. Martinez",
+              points: {show: true},
+              color: "#000000"
+            },
+            {
+              data: davis,
+              label: "K. Davis",
+              points: {show: true},
+              color: "#003831"
+            },
+            {
+              data: gallo,
+              label: "J. Gallo",
+              points: {show: true},
+              color: "#C0111F"
+            }
+          ],
+          {
+            HtmlText: false,
+            title: "Top 5 Power Hitters, 2017",
+            subtitle: "(Strikeouts vs. Home Runs)",
+            xaxis: {
+              min: 35,
+              max: 65,
+              tickDecimals: 0,
+              title: "Home Runs"
+            },
+            yaxis: {
+              min: 120,
+              max: 235,
+              tickDecimals: 0,
+              title: "Strikeouts"
+            }
+          }
+        )
+      }
+    </script>
+  </body>
+</html>

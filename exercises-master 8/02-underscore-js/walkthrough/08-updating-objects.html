@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Underscore.js: Updating Objects</title>
+  </head>
+
+  <body>
+
+    <p>Updating Objects</p>
+
+    <script src="js/underscore-min.js"></script>
+    <script>
+
+      var standard = {
+        size: 12,
+        crust: "regular",
+        cheese: true
+      }
+
+      var order = {
+        size: 10,
+        crust: "thin",
+        toppings: ["pepperoni", "sausage"]
+      }
+
+      // A note about *updating* objects. Be very thoughtful of what
+      // data you may be updating. If your data is provided from an
+      // official source, do you really want to change it? Doing so
+      // may present the user with incorrect information.
+
+      // Where might you update data? If, say, a property in a weather
+      // feed gives you "fahrenheit", you may want to change it to "F".
+      // This would be appropriate; but if you were to change data to
+      // influence presentation ... bad. :<
+
+
+      // _.extend(standard, order);
+      // .extend() starts with one object then adds properties based on
+      // the other object and *overrides* properties with new values.
+      // See: http://underscorejs.org/#extend
+
+      // _.defaults(order, standard)
+      // .defaults() starts with one object and adds properties based
+      // on the other(s) but leaves the original properties unchanged.
+      // See: http://underscorejs.org/#defaults
+
+      // NOTE: In both cases, the objects are not copied; they are
+      // *modified* directly. To use either method that does not
+      // modify the input, store the result in a variable and use an
+      // empty object ({}) as the first argument.
+
+      // var pizza = _.extend({}, standard, order);
+
+    </script>
+  </body>
+</html>

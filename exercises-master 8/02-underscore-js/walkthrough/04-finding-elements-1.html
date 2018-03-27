@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Underscore.js: Finding Elements</title>
+  </head>
+
+  <body>
+
+    <p>Finding Elements (Arrays)</p>
+
+    <script src="js/underscore-min.js"></script>
+    <script>
+
+      var primes = [2, 3, 5, 7, 11];
+
+      // _(primes).indexOf(5);
+      // .indexOf returns the position of the input value
+      // .indexOf is provided in underscore.js since it was not
+      // available in standard JS in older browsers (i.e. IE8);
+      // when the method is native, underscore.js defers to the
+      // browser.
+
+      // _(primes).sortedIndex(6);
+      // .sortedIndex assumes the array is sorted and finds the
+      // position in which an input value should be inserted.
+
+
+      var array = [2, 3, 5, 7, 11, 7, 5, 3, 2];
+
+      // _(array).indexOf(5, 4);
+      // .indexOf also takes a second argument -- the starting
+      // position of where the method should begin it search;
+      // in this case, the search begins at array[4] and will
+      // find the second '5' (located at array[6]).
+
+      // _(array).lastIndexOf(5);
+      // .lastIndexOf searches from the end of the array; a
+      // second parameter can be provided if you do not want to
+      // start from the end of the array
+
+
+      // NOTE: .uniq() and .indexOf accept an optional boolean value
+      // of 'true' which causes the method to assume the array is
+      // sorted. Performance can benefit with large data sets.
+
+    </script>
+  </body>
+</html>

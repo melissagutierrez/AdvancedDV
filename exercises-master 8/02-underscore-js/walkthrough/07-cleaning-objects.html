@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Underscore.js: Cleaning Objects</title>
+  </head>
+
+  <body>
+
+    <p>Cleaning Objects</p>
+
+    <script src="js/underscore-min.js"></script>
+    <script>
+
+      var pizza = {
+        size: 10,
+        crust: "thin",
+        cheese: true,
+        toppings: ["pepperoni", "sausage"]
+      }
+
+      // _(pizza).pick("size", "crust")
+      // .pick() retains keys (and values) from an object to be cleaned
+
+      // _(pizza).omit("size", "crust")
+      // .omit() eliminates keys (and values) from an object to be
+      // cleaned
+
+    </script>
+  </body>
+</html>

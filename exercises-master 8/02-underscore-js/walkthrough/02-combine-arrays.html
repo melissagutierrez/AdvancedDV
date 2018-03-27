@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Underscore.js: Combining Arrays</title>
+  </head>
+
+  <body>
+
+    <p>Combining Arrays</p>
+
+    <script src="js/underscore-min.js"></script>
+    <script>
+
+      var fibs = [0, 1, 1, 2, 3, 5, 8];
+      var even = [0, 2, 4, 6, 8];
+
+      // _(fibs).union(even);
+      // .union combines all items in inputs, removes duplicates
+      // whether they are in the same or different arrays
+      // .union can accept multiple arguments: .union(a, b, c)
+
+
+      // _(fibs).intersection(even);
+      // .intersection returns only items which appear in all
+      // input array
+
+
+      // _(fibs).difference(even);
+      // .difference returns elements in the first array which
+      // are not present in the other(s)
+
+
+      // _(fibs).uniq();
+      // .uniq removes duplicates from a single array; no
+      // argument is needed
+
+
+      var naturals = [1, 2, 3, 4, 5];
+      var primes   = [2, 3, 5, 7, 11];
+
+      // _(naturals).zip(primes);
+      // .zip combines two arrays, takes an item from each array
+      // index and combines it with the item in the same array index
+      // from the other array.
+      // _.zip(naturals, primes) works the same
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fibonacci: Underscore.js</title>
+  </head>
+
+  <body>
+
+    <script src="../js/underscore-min.js"></script>
+    <script>
+
+      var fib = _( function(n) {
+        return n < 2 ? n : fib(n-1) + fib(n-2);
+      }).memoize();
+
+      console.log(fib(10))
+    </script>
+  </body>
+</html>

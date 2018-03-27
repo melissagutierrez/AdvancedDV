@@ -1,7 +1,7 @@
 body {
-font-family: Helvetica;
-background-color: #DEF1FF;
+  font-family: sans-serif;
 }
+
 #chart {
   width: 600px;
   height: 400px;

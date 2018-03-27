@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>People in Space</title>
+  </head>
+
+
+  <body>
+
+    <p>People in Space</p>
+
+    <script src="js/zepto.min.js"></script>
+    <script src="js/underscore.min.js"></script>
+    <script>
+
+      $.getJSON("http://api.open-notify.org/astros.json",
+        function(data) {
+
+          // your code goes here
+
+          // data is the information passed from zepto
+          // in this example, data.property will return
+          // the property you're looking to single out
+          // from the JSON feed
+
+          console.log(data.number);
+        }
+      );
+
+    </script>
+  </body>
+</html>

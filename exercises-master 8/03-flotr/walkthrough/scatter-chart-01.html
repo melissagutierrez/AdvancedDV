@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Flotr2: Scatter Chart 01</title>
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+
+    <!-- If we want to explore the relationship between two different
+    quantities, a scatter chart is most effective. - Data Visualization
+    with JavaScript, p. 25 -->
+
+    <div id="chart"></div>
+
+    <script src="js/flotr2.min.js"></script>
+    <script src="js/underscore.min.js"></script>
+    <script>
+
+      var power_hitters = [
+        { label: "Giancarlo Stanton", hr: 59, k: 163 },
+        { label: "Aaron Judge",       hr: 52, k: 208 },
+        { label: "J.D. Martinez",     hr: 45, k: 128 },
+        { label: "Khris Davis",       hr: 43, k: 195 },
+        { label: "Joey Gallo",        hr: 41, k: 196 },
+        { label: "Cody Bellinger",    hr: 39, k: 146 },
+        { label: "Nelson Cruz",       hr: 39, k: 140 },
+        { label: "Edwin Encarnacion", hr: 38, k: 133 },
+        { label: "Logan Morrison",    hr: 38, k: 149 },
+        { label: "Mike Moustakas",    hr: 38, k: 94  },
+        { label: "Justin Smoak",      hr: 38, k: 128 }
+      ];
+
+
+      // We've got to transform our data into a Flotr-friendly array.
+      // For each object in our power_hitters object, get the hr and
+      // k (strikeout) data for each player. Place them in an array
+      // and add that array to the compiled_data array.
+
+      var compiled_data = [];
+
+      _(power_hitters).each(
+        function(data) {
+          compiled_data.push([data.hr, data.k]);
+        }
+      );
+
+
+
+      window.onload = function() {
+        Flotr.draw(
+          document.getElementById("chart"),
+          [
+            {
+              data: compiled_data,
+              points: {show: true},
+            }
+          ],
+          {
+            HtmlText: false,
+            title: "Power Hitters, 2017",
+            subtitle: "(Strikeouts vs. Home Runs)",
+            xaxis: {
+              min: 35,
+              max: 65,
+              tickDecimals: 0,
+              title: "Home Runs"
+            },
+            yaxis: {
+              min: 85,
+              max: 235,
+              tickDecimals: 0,
+              title: "Strikeouts"
+            }
+          }
+        )
+      }
+    </script>
+  </body>
+</html>

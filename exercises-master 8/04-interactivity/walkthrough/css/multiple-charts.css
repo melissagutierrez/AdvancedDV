@@ -1,0 +1,32 @@
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+#wrapper {
+  margin-left: 20px;
+}
+
+#charts,
+#legend {
+  float: left;
+}
+
+#charts {
+  width: 600px;
+}
+
+#charts > div {
+  width: 600px;
+  height: 50px;
+}
+
+#legend > p {
+  margin-top: 33px;
+  margin-bottom: 0;
+  margin-left: 10px;
+  height: 17px;
+}
