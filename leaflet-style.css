@@ -1,0 +1,11 @@
+body {
+font-family: Helvetica;
+background-color: lightyellow;
+text-align: center;
+
+}
+
+#map {
+  width: 900px;
+  height: 700px;
+}
