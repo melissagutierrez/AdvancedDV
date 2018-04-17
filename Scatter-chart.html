@@ -17,20 +17,12 @@
       var judge    = [[37.6, 36987]];
       var martinez = [[2.8, 16719]];
       var davis    = [[17.3, 16586]];
-      // So we don't have to process the data let's just hard-code it.
-      // The data we processed before did not add colors to
-      // differentiate one player from another. And since we're still
-      // doing static charts, there's no mouseover-tool tip to give us
-      // indication as to which dot is for which player. So color is
-      // our best option at the moment.
-      // We can see flaw in this chart format (and library) in that too
-      // many players could lead to overlap, an unweildy key and too
-      // many colors (and what happens if we show two players from one
-      // team?).
+
       window.onload = function() {
         Flotr.draw(
           document.getElementById("chart"),
           [
+            //different tracks and years and the corresponding data
             {
               data: stanton,
               label: "Tract A 2010",
@@ -58,13 +50,13 @@
           ],
           {
             HtmlText: false,
-            title: "Class Differences in Wynwood over Time",
+            title: "Class Differences in Wynwood 2010-2015",
             subtitle: "(Education vs. Income)",
             xaxis: {
               min: 0,
               max: 40,
               tickDecimals: 0,
-              title: "Percent BA or More"
+              title: "Percentage with Bachelors Degree or Higher"
             },
             yaxis: {
               min: 15000,
