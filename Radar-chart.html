@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <!-- saved from url=(0081)file:///Users/melissagutierrez/Desktop/Adv-Dataviz/Portfolio/Radar-chart-wyn.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+
     <title>Flotr2: Radar Chart</title>
     <link href="./Radar-chart_files/style.css" rel="stylesheet">
   </head>
 
   <body>
 
-    <!-- If you have data with many dimensions, a radar chart may be
-    the most effective way to visualize it ... unfamilarity makes them
-    harder for users to interpert ... be careful not to increase the
-    burden. - Data Visualization with JavaScript, p. 41 -->
+
 
     <div id="chart" style="position: relative;"><canvas class="flotr-canvas" width="600" height="400" style="position: absolute; left: 0px; top: 0px; width: 600px; height: 400px;"></canvas><canvas class="flotr-overlay" width="600" height="400" style="position: absolute; left: 0px; top: 0px; width: 600px; height: 400px;"></canvas><div style="position: absolute; top: -10000px;"><div style="font-size:smaller;" class="flotr-grid-label flotr-dummy-div">Puerto Rican Population</div></div><div style="position: absolute; top: -10000px;"><div style="font-size:1em;font-weight:bold;" class="flotr-title flotr-dummy-div">2010 Wynwood Population</div></div><div class="flotr-titles"><div style="position:absolute;top:0;left:1px;font-size:1em;font-weight:bold;text-align:center;width:598px;" class="flotr-title">2010 Wynwood Population</div><div class="flotr-axis-title" style="font-weight:bold;"></div></div><div class="flotr-legend" style="position: absolute; z-index: 2; border: 1px solid rgb(204, 204, 204); top: 27px; bottom: auto; left: 6px; right: auto;"><table style="font-size:smaller;color:#545454"><tbody><tr><td class="flotr-legend-color-box"><div style="border:1px solid #CCCCCC;padding:1px"><div style="width:13px;height:9px;border:1px solid rgb(0,168,240)"><div style="width:14px;height:10px;background-color:rgb(0,168,240);"></div></div></div></td><td class="flotr-legend-label">Track Twenty Six</td></tr><tr><td class="flotr-legend-color-box"><div style="border:1px solid #CCCCCC;padding:1px"><div style="width:13px;height:9px;border:1px solid rgb(192,216,0)"><div style="width:14px;height:10px;background-color:rgb(192,216,0);"></div></div></div></td><td class="flotr-legend-label">Track Twenty Eight</td></tr></tbody></table></div><div class="flotr-legend-bg" style="position: absolute; top: 27px; bottom: auto; left: 6px; right: auto; height: 46px; width: 147px; background-color: rgb(240, 240, 240); opacity: 0.85;"> </div></div>
 
@@ -36,8 +33,8 @@
         HouingUnits: 642
       },
     ]
-    // We accumulate a sum of player data so we have something to
-    // compare each player to.
+
+
     var team = {
       Population: 4047,
       OccupiedHousingUnits: 2110,
@@ -46,8 +43,8 @@
       HouingUnits: 3268
 }
 
-    // Our labels define each point on the radar. This is similar to
-    // how we map the index of a bar chart to a label.
+
+
     var labels = [
       [0, "Population over 25"],
       [1, "Occupied Housing Units"],
@@ -55,17 +52,17 @@
       [3, "Puerto Rican Population"],
       [4, "Housing Units"]
     ];
-    // The getPlayer function iterates through each player in our
-    // players array. If the player name in the array object matches
-    // what is passed into the function, it returns that player's
-    // data.
+
+
+
     var getPlayer = function(name) {
       for (i = 0; i < players.length; i++) {
         if (players[i].player === name) return players[i];
       }
     }
-    // The playerData function uses the team object as a foundation
-    // for the keys we want to collect from each player.
+
+
+
     var playerData = function(name) {
       var obj = {};
       var i = 0;
@@ -102,20 +99,14 @@
         }
       );
     }
-    // There's one problem with radar charts: to overlay too many
-    // measurements may confuse the reader even though they offer
-    // comparisons.
-    // A few options might be:
-    // - Limit the number data sets you present at any one time.
-    //   Instead of showing the entire starting lineup, display
-    //   Miami's 'Big Three' (Bosh, James and Wade).
-    // - Build a chart for each player and display them next to
-    //   each other. If the differences are drastic enough, a
-    //   user will be able to see them.
-    // - Add interactivity. (I know, I know - - we're getting there!)
-    //   Give a user the option of displaying as many data sets as
-    //   they can handle.
-    </script>
+
+
+
+
+
+
   
+    </script>
+
 
 </body></html>

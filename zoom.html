@@ -9,34 +9,24 @@
   <h2> From 1980-2010<body>
 <h3> Source: GSS </h3>
 
-    <!-- With 'zoom' functionality, we let a user highlight an area
-    of a chart to view greater detail. This may be helpful when data
-    sets are very close together, or a user wants to examine a select
-    number of points in a very detailed data set. -->
+
 
     <div id="chart"></div>
 
-    <!-- We need to provide a way for a user to reset the chart to
-    either continue viewing it as a whole, or make another selection.
-    This button is our interface. -->
+
+
 
     <button id="reset">Reset Zoom</button>
 
-    <!-- While we've done a good job offering a way to reset ... we
-    never made it clear to the user why this button even exists. What
-    can the user do with this chart? Do they even know they can select
-    a more detailed area?
 
-    Be sure to provide concise instructions in your own examples. -->
 
 
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/jquery.flot.min.js"></script>
     <script src="js/jquery.flot.selection.min.js"></script>
 
-    <!-- To make the zoom feature work, we not only need the flot
-    library, but a flot 'plugin' called 'selection', which is included
-    in the Flot zip file containing all source code. -->
+
+
 
     <script>
 
@@ -65,49 +55,23 @@
 
         var $el = $("#chart");
 
-        // In our options, we need to display a legend -- be sure
-        // the legend order matches with the lines -- and we'll also
-        // need to add the 'selection' option.
 
-        // 'selection' is part of the Flot 'selection' plugin, which
-        // allows a user to click and drag across a chart (highligting)
-        // a specific area. The mode "xy" indicates the data we're
-        // collecting from the click-and-drag event is gathering x and
-        // y coordinates.
+
+
 
         var options = {
           legend: { position: "nw" },
           selection: { mode: "xy" }
         }
 
-        // For simplicity, we're storing our arguments in variables.
 
         var plotObj = $.plot($el, source, options);
 
 
-        // When a user selects a portion of the chart, we need to
-        // use the event data to tell us the coordinates of the
-        // portion selected (new min/max x, y values) and modify
-        // the plotObj we created above.
 
-        // jQuery's .on() function allows us to define an event; in
-        // this case, we're using Flot's 'plotselected' function.
-        // When a user selects a new area on the chart, we get the
-        // new coordinates. (Be sure to include the 'selection:
-        // { mode: "xy"}' option so this works!)
 
-        // jQuery's .extend() function requires multiple parameters:
 
-        // 1. the target; we have specified 'true' to indicate we want
-        // a 'deep' (or more detailed) copy of what we're selecting.
 
-        // 2. an empty object which will store our new properties.
-
-        // 3. the options we defined for our chart earlier.
-
-        // 4. the object containing the new range of x,y values
-        // selected by the user. The 'min' value is where we start the
-        // click; the 'max' value is where we end the drag.
 
         $el.on("plotselected", function(event, ranges) {
           plotObj = $.plot($el, source,
@@ -118,12 +82,10 @@
           );
         });
 
-        // We offer the user a button to reset the chart to its
-        // original state. (See HTML above.)
 
-        // We have attached a 'click' listener to the button (#reset).
-        // When clicked, we just reset plotObj to its original state,
-        // using the original source and options
+
+
+
 
         $("#reset").click(function() {
           plotObj = $.plot($el, source, options);
