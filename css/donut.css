@@ -45,7 +45,7 @@
 
 /*-------- D3 Charts --------*/
 svg .data text {
-    font-family: 'Oswald', 'sans-serif';
+    font-family: 'Helvetica', 'sans-serif';
 }
 
 .d3_chart {
