@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Weather Widget</title>
+    <style>
+         table, th, td {
+      border: 2px solid #c9dbe1;
+      padding: 10px;}
+
+  </style>
+  </head>
+  <link href="css/style.css" rel="stylesheet"/>
+
+  <body>
+
+    <h1>Weekly Weather Widget</h1>
+    <p id= "city"> </p>
+
+      <table id="forecast">
+            <tr>
+        <th>Day of Week</th>
+        <th>Temperature (F)</th>
+        <th>Detailed Forecast</th>
+    </tr>
+    </table>
+
+    <script src="js/zepto.min.js"></script>
+    <script src="js/underscore.min.js"></script>
+    <script>
+      $.getJSON("https://api.weather.gov/points/40.677612,-73.943791",
+        function(data){
+          var city = data.properties.relativeLocation.properties.city;
+      document.getElementById('city').append("Here is the detailed weekly forecast for: " + city +"" )
+          $.getJSON(data.properties.forecast,
+            function(forecast) {
+         _(forecast.properties.periods).each(
+         function(item) {
+       var tr =  document.createElement('tr');
+              var day = document.createElement('td');
+              day.append(item.name);
+              var temperature = document.createElement('td');
+              temperature.append(item.temperature);
+              var forecast = document.createElement('td');
+              forecast.append(item.detailedForecast);
+              document.getElementById('forecast').append(tr, day, temperature, forecast);
+         }
+         )
+      })
+    });
+    </script>
+
+
+
+
+
+  </body>
+</html>

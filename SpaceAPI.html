@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Space People</title>
+    <link href="css/style.css" rel="stylesheet"/>
+
+<style>
+      table, th, td {
+    border: 2px solid #c9dbe1;
+    padding: 10px;}
+</style>
+</head>
+<body>
+  <h1>Astronauts in Space</h1>
+        <p id="total"></p>
+
+        <table id="Astronauts">
+        <tr>
+        <th>Craft</th>
+    <th>Name</th>
+</tr>
+</table>
+    <script src="js/zepto.min.js"></script>
+    <script src="js/underscore.min.js"></script>
+    <script>
+     $.getJSON("http://api.open-notify.org/astros.json",
+        function(data) {
+          var total = document.getElementById('total')
+          var number = data.people.length;
+        total.append("There are currently " + number + " people in space:")
+          _(data.people).each(
+            function(person) {
+                var tr =  document.createElement('tr');
+              var craft = document.createElement('td');
+              craft.append(person.craft);
+              var name = document.createElement('td');
+              name.append(person.name);
+              document.getElementById('Astronauts').append(tr, craft, name,);
+            }
+          );
+        }
+      );
+    </script>
+
+    <p>Using underscore.js, I created a table that displays information about people in space. The cells correspond to data come from the astros.json API.</p>
+  </body>
+</html>
