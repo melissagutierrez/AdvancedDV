@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Flotr2: Bubble Chart 02</title>
+    <link href="css/style.css" rel="stylesheet" />
+    <style>
+      #chart {
+        width: 365px;
+        height: 440px;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div id="chart"></div>
+
+    <script src="js/flotr2.min.js"></script>
+    <script src="js/underscore.min.js"></script>
+    <script>
+
+      var irma = [
+        { north: 25.7859307, west: 80.1861912, wind: 200},
+        { north: 25.77457, west: 80.1962874, wind: 70 },
+        { north: 25.7508173, west: 80.2143295, wind: 15 },
+        { north: 26.216077, west: 81.803921, wind:  30 },
+        { north: 28.572682, west: 81.365092, wind:  19 },
+        { north: 26.700782, west: 80.053000, wind:  123 },
+        { north: 27.649807, west: 80.366991, wind:  74 },
+        { north: 30.329319, west: 81.658649, wind:  60 },
+        { north: 28.131281, west: 80.627275, wind:  28 },
+
+      ];
+
+
+
+      function getPoints(source) {
+        var result = [];
+
+        _(source).each(
+          function(data) {
+            result.push([(data.west * -1), data.north, data.wind]);
+          }
+        );
+
+        return result;
+      }
+
+
+
+      var tstorm = getPoints(_(irma).filter(
+        function(data) {
+          return (data.wind >= 0) && (data.wind <= 0);
+        })
+      );
+
+      var cat1 = getPoints(_(irma).filter(
+        function(data) {
+          return (data.wind >= 0) && (data.wind <= 0);
+        })
+      );
+
+      var cat2 = getPoints(_(irma).filter(
+        function(data) {
+          return (data.wind >= 0) && (data.wind <= 49);
+        })
+      );
+
+      var cat3 = getPoints(_(irma).filter(
+        function(data) {
+          return (data.wind >= 50) && (data.wind <= 99);
+        })
+      );
+
+      var cat4 = getPoints(_(irma).filter(
+        function(data) {
+          return (data.wind >= 100) && (data.wind <= 149);
+        })
+      );
+
+      var cat5 = getPoints(_(irma).filter(
+        function(data) {
+          return (data.wind >= 150);
+        })
+      );
+
+
+      window.onload = function() {
+        Flotr.draw(
+          document.getElementById("chart"),
+          [
+          {
+            data: cat2,
+            label: "Under 50K",
+            color: "#8acce2",
+            bubbles: {show: true, baseRadius: 0.090}
+          },
+          {
+            data: cat3,
+            label: "50K - 99K",
+            color: "#75d8f9",
+            bubbles: {show: true, baseRadius: 0.090}
+          },
+          {
+            data: cat4,
+            label: "100K - 149K",
+            color: "#33add6",
+            bubbles: {show: true, baseRadius: 0.090}
+          },
+          {
+            data: cat5,
+            label: "Over 150K",
+            color: "#016d91",
+            bubbles: {show: true, baseRadius: 0.090}
+          },
+        ],
+          {
+            title: "Museums in Florida by Square Footage",
+            xaxis: {
+              min: -86.0,
+              max: -78.0,
+              tickDecimals: false,
+              tickFormatter: function(val) { return val + "°W"}
+            },
+            yaxis: {
+              min: 23.5,
+              max: 32.0,
+              tickDecimals: false,
+              tickFormatter: function(val) { return val + "°N"}
+            },
+            grid: {
+              backgroundImage: "img/florida.png",
+              horizontalLines: false,
+              verticalLines: false
+            },
+            legend: {
+              position: "sw"
+            }
+          }
+        )
+      }
+    </script>
+  </body>
+</html>
